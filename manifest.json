@@ -1,0 +1,22 @@
+{
+  "name": "Heridas y Ostomías",
+  "short_name": "Heridas UCEVA",
+  "description": "Campus virtual del módulo de Heridas y Ostomías del Programa de Enfermería de la Unidad Central del Valle del Cauca.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#0f7a4c",
+  "lang": "es",
+  "icons": [
+    { "src": "assets/icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "assets/icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Programación", "short_name": "Programación", "url": "./index.html#/programacion", "description": "Ver el cronograma del módulo" },
+    { "name": "Recursos", "short_name": "Recursos", "url": "./index.html#/recursos", "description": "Ver recursos del módulo" },
+    { "name": "Actividades", "short_name": "Actividades", "url": "./index.html#/actividades", "description": "Ver actividades pendientes" },
+    { "name": "Panel Docente", "short_name": "Docente", "url": "./index.html#/docente", "description": "Administrar el módulo" }
+  ]
+}

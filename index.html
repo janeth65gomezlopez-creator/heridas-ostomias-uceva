@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heridas y Ostomías · UCEVA</title>
+<meta name="description" content="Campus virtual del módulo Heridas y Ostomías — Programa de Enfermería, Unidad Central del Valle del Cauca (UCEVA).">
+<meta name="theme-color" content="#0f7a4c">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icons/icon-192.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.svg">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- ============================= ICON SPRITE ============================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8v.01"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".6" fill="currentColor"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15.5H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 18.5V5.5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M10 8.5v7l6-3.5z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-library" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V6a1 1 0 0 1 1-1h4v15M9 20V5M20 20 15 5l-2 .6 5 15z"/></symbol>
+    <symbol id="i-case" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M8 7.5V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5M3 12h18"/></symbol>
+    <symbol id="i-task" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-eval" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3.5h6l1 3H8z"/><rect x="5" y="6.5" width="14" height="14" rx="2"/><path d="m9 13 2 2 4-4"/></symbol>
+    <symbol id="i-faq" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 1 1 3.7 2.6c-.7.3-1 .8-1 1.6v.4M12 17v.01"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6.5 8 6.5 8-6.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 10a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3 2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 17l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v11M8 11l4 4 4-4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.5 14.5 14.5 9.5"/><path d="M11 6.5 12.6 5a3.5 3.5 0 1 1 5 5l-1.6 1.6M13 17.5 11.4 19a3.5 3.5 0 1 1-5-5l1.6-1.6"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h4L18 10l-4-4L4 16z"/><path d="m14.5 5.5 4 4"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 7h14M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m-9 0 1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 5 3.5 7.7 8 9 4.5-1.3 8-4 8-9V6z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 1 1 8 0v2.5"/></symbol>
+    <symbol id="i-ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.4-4A8 8 0 1 1 8.6 19z"/><path d="M9 9.5c0 3 2 5.3 5.5 5.5.6 0 1-.6.6-1.1l-1-1.4-1.6.5A5 5 0 0 1 9.5 10l.5-1.6-1.4-1c-.5-.4-1.1 0-1.1.6z"/></symbol>
+    <symbol id="i-teams" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 9.5 21 7v10l-5-2.5"/></symbol>
+    <symbol id="i-drive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8 3 8 0 5 9-4 8H7l-4-8z"/><path d="M8 3 4 12h16"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4 10-10"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="5"/><path d="m8.5 12.5-2 8 5.5-3 5.5 3-2-8"/></symbol>
+    <symbol id="i-contrast" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18Z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3M16 16l4-4-4-4M9 12h11"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============================= SPLASH SCREEN ============================= -->
+<div id="splash">
+  <div class="splash-logo">UC</div>
+  <h1>Campus Virtual</h1>
+  <p>Heridas y Ostomías · UCEVA</p>
+  <div class="splash-bar"></div>
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<!-- ============================= HEADER ============================= -->
+<header class="app-header">
+  <div class="header-left">
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><svg width="22" height="22"><use href="#i-menu"/></svg></button>
+    <a href="#/inicio" class="brand">
+      <div class="brand-logo">UC</div>
+      <div class="brand-text">
+        <strong>Cuidado de Enfermería del Adulto en Alta Complejidad</strong>
+        <span>Módulo I · Heridas y Ostomías — UCEVA</span>
+      </div>
+    </a>
+  </div>
+  <div class="header-search">
+    <svg width="18" height="18"><use href="#i-search"/></svg>
+    <input id="globalSearch" type="text" placeholder="Buscar artículos, videos, temas, actividades…">
+  </div>
+  <div class="header-right">
+    <button class="icon-btn" id="notifBtn" aria-label="Notificaciones">
+      <svg width="19" height="19"><use href="#i-bell"/></svg>
+      <span class="badge-dot" id="notifDot"></span>
+    </button>
+    <button class="icon-btn" id="contrastBtn" aria-label="Alto contraste" title="Alto contraste"><svg width="19" height="19"><use href="#i-contrast"/></svg></button>
+    <button class="user-chip" id="userChip">
+      <span class="user-avatar" id="userAvatar">ES</span>
+      <span id="userLabel">Invitado</span>
+    </button>
+  </div>
+</header>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="app-shell">
+  <!-- ============================= SIDEBAR ============================= -->
+  <aside class="sidebar" id="sidebar">
+    <p class="sidebar-section-label">Campus</p>
+    <button class="nav-item" data-route="inicio"><svg width="18" height="18"><use href="#i-home"/></svg> Inicio</button>
+    <button class="nav-item" data-route="presentacion"><svg width="18" height="18"><use href="#i-info"/></svg> Presentación</button>
+    <button class="nav-item" data-route="objetivo"><svg width="18" height="18"><use href="#i-target"/></svg> Objetivo del módulo</button>
+    <button class="nav-item" data-route="programacion"><svg width="18" height="18"><use href="#i-calendar"/></svg> Programación</button>
+
+    <p class="sidebar-section-label">Aprendizaje</p>
+    <button class="nav-item" data-route="recursos"><svg width="18" height="18"><use href="#i-book"/></svg> Recursos</button>
+    <button class="nav-item" data-route="clases"><svg width="18" height="18"><use href="#i-play"/></svg> Clases</button>
+    <button class="nav-item" data-route="biblioteca"><svg width="18" height="18"><use href="#i-library"/></svg> Biblioteca científica</button>
+    <button class="nav-item" data-route="casos"><svg width="18" height="18"><use href="#i-case"/></svg> Casos clínicos</button>
+
+    <p class="sidebar-section-label">Evaluación</p>
+    <button class="nav-item" data-route="actividades"><svg width="18" height="18"><use href="#i-task"/></svg> Actividades</button>
+    <button class="nav-item" data-route="evaluaciones"><svg width="18" height="18"><use href="#i-eval"/></svg> Evaluaciones</button>
+    <button class="nav-item" data-route="calendario"><svg width="18" height="18"><use href="#i-calendar"/></svg> Calendario</button>
+
+    <p class="sidebar-section-label">Soporte</p>
+    <button class="nav-item" data-route="faq"><svg width="18" height="18"><use href="#i-faq"/></svg> Preguntas frecuentes</button>
+    <button class="nav-item" data-route="contacto"><svg width="18" height="18"><use href="#i-mail"/></svg> Contacto docente</button>
+
+    <p class="sidebar-section-label">Mi cuenta</p>
+    <button class="nav-item" data-route="perfil"><svg width="18" height="18"><use href="#i-user"/></svg> Mi perfil</button>
+    <button class="nav-item" data-route="favoritos"><svg width="18" height="18"><use href="#i-star"/></svg> Mis favoritos</button>
+
+    <p class="sidebar-section-label" id="teacherNavLabel" style="display:none">Administración</p>
+    <button class="nav-item" data-route="docente" id="navDocente" style="display:none"><svg width="18" height="18"><use href="#i-shield"/></svg> Panel Docente</button>
+
+    <div class="sidebar-progress">
+      <h4>Progreso del módulo</h4>
+      <div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width:0%"></div></div>
+      <small id="sidebarProgressText">0% completado</small>
+    </div>
+  </aside>
+
+  <!-- ============================= MAIN CONTENT ============================= -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ---------- INICIO ---------- -->
+    <section class="view" id="view-inicio">
+      <div class="install-banner" id="installBanner">
+        <p>📲 Instala esta app en tu celular o computador para acceder más rápido, incluso sin conexión.</p>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary btn-sm" id="installBtn">Instalar aplicación</button>
+          <button class="btn btn-ghost btn-sm" id="dismissInstall">Ahora no</button>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Programa de Enfermería · UCEVA</p>
+          <h1 id="heroGreeting">Bienvenido(a) al módulo de Heridas y Ostomías</h1>
+          <p>Integra los fundamentos científicos, el razonamiento clínico y la práctica basada en la evidencia para valorar, prevenir, tratar y hacer seguimiento a personas con heridas complejas y ostomías.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-goto="programacion">Ver programación</button>
+            <button class="btn btn-outline" data-goto="recursos">Ir a recursos</button>
+            <button class="btn btn-outline" data-goto="actividades">Ver actividades</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-grid tight section-gap">
+        <div class="card stat-card"><div class="stat-icon"><svg width="20" height="20"><use href="#i-book"/></svg></div><div><div class="stat-value" id="statSesiones">0/8</div><div class="stat-label">Sesiones vistas</div></div></div>
+        <div class="card stat-card"><div class="stat-icon blue"><svg width="20" height="20"><use href="#i-library"/></svg></div><div><div class="stat-value" id="statRecursos">0</div><div class="stat-label">Recursos revisados</div></div></div>
+        <div class="card stat-card"><div class="stat-icon"><svg width="20" height="20"><use href="#i-task"/></svg></div><div><div class="stat-value" id="statActividades">0</div><div class="stat-label">Actividades entregadas</div></div></div>
+        <div class="card stat-card"><div class="stat-icon blue"><svg width="20" height="20"><use href="#i-award"/></svg></div><div><div class="stat-value" id="statPuntos">0 pts</div><div class="stat-label">Gamificación</div></div></div>
+      </div>
+
+      <div class="session-detail-grid section-gap" style="grid-template-columns:2fr 1fr">
+        <div class="card">
+          <h3 style="margin-bottom:12px">📣 Anuncios y novedades</h3>
+          <div id="announcementList"></div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:12px">Accesos rápidos</h3>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button class="btn btn-outline btn-block" data-goto="actividades">📤 Subir tarea</button>
+            <a class="btn btn-outline btn-block" href="https://moodle.org" target="_blank" rel="noopener">🎓 Ir a Moodle</a>
+            <button class="btn btn-outline btn-block" data-goto="biblioteca">📚 Biblioteca</button>
+            <a class="btn btn-outline btn-block" href="https://drive.google.com" target="_blank" rel="noopener">📁 Google Drive</a>
+            <a class="btn btn-outline btn-block" href="https://meet.google.com" target="_blank" rel="noopener">🎥 Google Meet</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card section-gap">
+        <h3 style="margin-bottom:12px">Continuar donde quedé</h3>
+        <div id="continueList" class="card-grid tight"></div>
+      </div>
+    </section>
+
+    <!-- ---------- PRESENTACIÓN ---------- -->
+    <section class="view" id="view-presentacion">
+      <div class="view-header"><div><p class="eyebrow">Módulo I</p><h2>Presentación del módulo</h2></div></div>
+      <div class="card-grid">
+        <div class="card"><h3>Qué aprenderá el estudiante</h3><p class="muted" style="margin-top:8px">Fundamentos de la valoración, prevención, tratamiento y seguimiento de heridas complejas y ostomías, integrando razonamiento clínico y evidencia científica.</p></div>
+        <div class="card"><h3>Importancia clínica</h3><p class="muted" style="margin-top:8px">Las heridas complejas y las ostomías impactan significativamente la calidad de vida y requieren cuidado especializado, seguro y humanizado.</p></div>
+        <div class="card"><h3>Competencias</h3><p class="muted" style="margin-top:8px">Aplicar el proceso de enfermería, el juicio clínico y los principios de seguridad del paciente en el cuidado de la integridad cutánea.</p></div>
+        <div class="card"><h3>Metodología</h3><p class="muted" style="margin-top:8px">Clases magistrales, análisis de casos clínicos, talleres prácticos y autoaprendizaje guiado a través del campus virtual.</p></div>
+        <div class="card"><h3>Duración</h3><p class="muted" style="margin-top:8px">8 sesiones · Horas independientes: 48 · Horas presenciales: 32 (editable por el docente).</p></div>
+        <div class="card"><h3>Resultados esperados</h3><p class="muted" style="margin-top:8px">El estudiante valora, previene, trata y da seguimiento a personas con heridas complejas y ostomías con enfoque humanizado.</p></div>
+      </div>
+    </section>
+
+    <!-- ---------- OBJETIVO ---------- -->
+    <section class="view" id="view-objetivo">
+      <div class="view-header"><div><p class="eyebrow">Módulo I</p><h2>Objetivo general del módulo</h2></div></div>
+      <div class="card">
+        <p style="font-size:1.02rem; line-height:1.7">Diseñar una experiencia de aprendizaje que permita al estudiante integrar los fundamentos científicos, el razonamiento clínico y la práctica basada en la evidencia para <strong>valorar, prevenir, tratar y realizar seguimiento</strong> a personas con heridas complejas y ostomías, aplicando el proceso de enfermería, el juicio clínico y principios de seguridad del paciente con un enfoque humanizado.</p>
+        <hr class="sep">
+        <p class="muted">Este propósito está alineado con el microcurrículo institucional y el desarrollo de competencias para el cuidado de la integridad cutánea del Programa de Enfermería de la Unidad Central del Valle del Cauca (UCEVA).</p>
+      </div>
+    </section>
+
+    <!-- ---------- PROGRAMACIÓN ---------- -->
+    <section class="view" id="view-programacion">
+      <div class="view-header">
+        <div><p class="eyebrow">Cronograma</p><h2>Programación del módulo</h2><p>Haz clic en cada sesión para ver objetivos, contenido, actividad y material de apoyo.</p></div>
+      </div>
+      <div class="timeline" id="sessionsTimeline"></div>
+    </section>
+
+    <!-- ---------- RECURSOS ---------- -->
+    <section class="view" id="view-recursos">
+      <div class="view-header"><div><p class="eyebrow">Aprendizaje</p><h2>Recursos</h2></div></div>
+      <div class="tabs" id="resourceTabs"></div>
+      <div class="card-grid" id="resourcesGrid"></div>
+    </section>
+
+    <!-- ---------- CLASES ---------- -->
+    <section class="view" id="view-clases">
+      <div class="view-header"><div><p class="eyebrow">Aprendizaje</p><h2>Clases</h2><p>Videos y presentaciones compatibles con YouTube, Drive, Vimeo o MP4.</p></div></div>
+      <div class="card-grid" id="clasesGrid"></div>
+    </section>
+
+    <!-- ---------- BIBLIOTECA ---------- -->
+    <section class="view" id="view-biblioteca">
+      <div class="view-header"><div><p class="eyebrow">Aprendizaje</p><h2>Biblioteca científica</h2></div></div>
+      <div class="tabs" id="biblioFilters"></div>
+      <div class="card-grid" id="biblioGrid"></div>
+    </section>
+
+    <!-- ---------- CASOS CLÍNICOS ---------- -->
+    <section class="view" id="view-casos">
+      <div class="view-header"><div><p class="eyebrow">Aprendizaje</p><h2>Casos clínicos</h2></div></div>
+      <div class="card-grid" id="casosGrid"></div>
+    </section>
+
+    <!-- ---------- ACTIVIDADES ---------- -->
+    <section class="view" id="view-actividades">
+      <div class="view-header"><div><p class="eyebrow">Evaluación</p><h2>Actividades</h2></div></div>
+      <div class="card-grid" id="actividadesGrid"></div>
+    </section>
+
+    <!-- ---------- EVALUACIONES ---------- -->
+    <section class="view" id="view-evaluaciones">
+      <div class="view-header"><div><p class="eyebrow">Evaluación</p><h2>Evaluaciones</h2></div></div>
+      <div class="card-grid" id="evaluacionesGrid"></div>
+    </section>
+
+    <!-- ---------- CALENDARIO ---------- -->
+    <section class="view" id="view-calendario">
+      <div class="view-header">
+        <div><p class="eyebrow">Evaluación</p><h2>Calendario</h2></div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn btn-outline btn-sm" id="calPrev">‹</button>
+          <strong id="calLabel" style="min-width:150px;text-align:center"></strong>
+          <button class="btn btn-outline btn-sm" id="calNext">›</button>
+        </div>
+      </div>
+      <div class="card">
+        <div style="display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap">
+          <span class="chip green">● Clase</span>
+          <span class="chip warn">● Actividad / Entrega</span>
+          <span class="chip blue">● Evaluación</span>
+          <span class="chip">● Evento</span>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+      </div>
+    </section>
+
+    <!-- ---------- FAQ ---------- -->
+    <section class="view" id="view-faq">
+      <div class="view-header"><div><p class="eyebrow">Soporte</p><h2>Preguntas frecuentes</h2></div></div>
+      <div class="card" style="max-width:760px">
+        <div class="timeline" style="padding-left:0">
+          <details style="padding:14px 0;border-bottom:1px solid var(--gray-100)"><summary style="cursor:pointer;font-weight:600">¿Cómo subo una actividad?</summary><p class="muted" style="margin-top:8px">Ve a la sección Actividades, elige la actividad correspondiente y usa el botón "Subir actividad".</p></details>
+          <details style="padding:14px 0;border-bottom:1px solid var(--gray-100)"><summary style="cursor:pointer;font-weight:600">¿Puedo usar la plataforma sin internet?</summary><p class="muted" style="margin-top:8px">Sí. Al instalar la aplicación, el cronograma, el menú y los últimos recursos vistos quedan disponibles sin conexión.</p></details>
+          <details style="padding:14px 0;border-bottom:1px solid var(--gray-100)"><summary style="cursor:pointer;font-weight:600">¿Cómo contacto a mi docente?</summary><p class="muted" style="margin-top:8px">En la sección Contacto docente encontrarás el formulario, WhatsApp, Teams y correo institucional.</p></details>
+          <details style="padding:14px 0"><summary style="cursor:pointer;font-weight:600">¿Quién puede editar el contenido del módulo?</summary><p class="muted" style="margin-top:8px">Solo la docente, a través del Panel Docente protegido por contraseña.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- CONTACTO ---------- -->
+    <section class="view" id="view-contacto">
+      <div class="view-header"><div><p class="eyebrow">Soporte</p><h2>Contacta a tu docente</h2></div></div>
+      <div class="session-detail-grid" style="grid-template-columns:1fr 1.3fr">
+        <div class="card center">
+          <div style="width:96px;height:96px;border-radius:50%;background:var(--uceva-green-light);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:34px">👩‍⚕️</div>
+          <h3>Yaneth Gómez López</h3>
+          <p class="muted">Docente · Programa de Enfermería</p>
+          <p class="muted" style="margin-top:6px">yaneth.gomez@uceva.edu.co</p>
+          <p class="muted">Horario de atención: Lun–Vie, 2:00–4:00 p.m.</p>
+          <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+            <a class="btn btn-outline btn-sm" href="https://wa.me/573000000000" target="_blank" rel="noopener"><svg width="16" height="16"><use href="#i-whatsapp"/></svg> WhatsApp</a>
+            <a class="btn btn-outline btn-sm" href="https://teams.microsoft.com" target="_blank" rel="noopener"><svg width="16" height="16"><use href="#i-teams"/></svg> Teams</a>
+            <a class="btn btn-outline btn-sm" href="mailto:yaneth.gomez@uceva.edu.co"><svg width="16" height="16"><use href="#i-mail"/></svg> Correo</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:14px">Enviar duda</h3>
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group"><label>Nombre</label><input type="text" required></div>
+              <div class="form-group"><label>Correo</label><input type="email" required></div>
+            </div>
+            <div class="form-group"><label>Asunto</label><input type="text" required></div>
+            <div class="form-group"><label>Mensaje</label><textarea required></textarea></div>
+            <div class="form-group"><label>Adjuntar archivo (opcional)</label><input type="file"></div>
+            <button class="btn btn-primary btn-block" type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- PERFIL ---------- -->
+    <section class="view" id="view-perfil">
+      <div class="view-header"><div><p class="eyebrow">Cuenta</p><h2>Mi perfil</h2></div></div>
+      <div class="session-detail-grid" style="grid-template-columns:1fr 2fr">
+        <div class="card center">
+          <div style="width:88px;height:88px;border-radius:50%;background:var(--uceva-green-light);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;color:var(--uceva-green-dark)" id="profileAvatarBig">ES</div>
+          <h3 id="profileNameBig">Estudiante UCEVA</h3>
+          <p class="muted" id="profileSemesterBig">Semestre —</p>
+          <button class="btn btn-ghost btn-sm" id="switchUserBtn" style="margin-top:12px"><svg width="15" height="15" style="vertical-align:-2px"><use href="#i-logout"/></svg> Cerrar sesión / cambiar de usuario</button>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:14px">Editar información</h3>
+          <form id="profileForm">
+            <div class="form-row">
+              <div class="form-group"><label>Nombre</label><input type="text" id="pfNombre"></div>
+              <div class="form-group"><label>Correo</label><input type="email" id="pfCorreo"></div>
+            </div>
+            <div class="form-group"><label>Semestre</label><input type="text" id="pfSemestre"></div>
+            <button class="btn btn-primary" type="submit">Guardar cambios</button>
+          </form>
+          <hr class="sep">
+          <div class="card-grid tight">
+            <div class="card stat-card"><div class="stat-icon"><svg width="20" height="20"><use href="#i-award"/></svg></div><div><div class="stat-value" id="pfInsignias">0</div><div class="stat-label">Insignias</div></div></div>
+            <div class="card stat-card"><div class="stat-icon blue"><svg width="20" height="20"><use href="#i-clock"/></svg></div><div><div class="stat-value" id="pfHoras">0h</div><div class="stat-label">Horas estudiadas</div></div></div>
+            <div class="card stat-card"><div class="stat-icon"><svg width="20" height="20"><use href="#i-check"/></svg></div><div><div class="stat-value" id="pfActividades">0</div><div class="stat-label">Actividades realizadas</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- FAVORITOS ---------- -->
+    <section class="view" id="view-favoritos">
+      <div class="view-header"><div><p class="eyebrow">Cuenta</p><h2>Mis favoritos</h2></div></div>
+      <div class="card-grid" id="favoritosGrid"></div>
+    </section>
+
+    <!-- ================= PANEL DOCENTE ================= -->
+    <section class="view" id="view-docente">
+      <div class="view-header">
+        <div><span class="teacher-badge"><svg width="14" height="14"><use href="#i-shield"/></svg> PANEL DOCENTE</span><h2 style="margin-top:10px">Administración del módulo</h2><p>Agrega o edita sesiones, sube PDF, pega enlaces de Drive/YouTube/Meet, crea anuncios y publica tareas — todo se guarda automáticamente.</p></div>
+        <button class="btn btn-ghost" id="teacherLogoutBtn"><svg width="16" height="16"><use href="#i-logout"/></svg> Cerrar sesión docente</button>
+      </div>
+
+      <div class="tabs" id="teacherTabs">
+        <button class="tab-btn active" data-tab="anuncios">Anuncios</button>
+        <button class="tab-btn" data-tab="sesiones">Cronograma / Sesiones</button>
+        <button class="tab-btn" data-tab="recursos">Recursos</button>
+        <button class="tab-btn" data-tab="casos">Casos clínicos</button>
+        <button class="tab-btn" data-tab="actividades">Actividades</button>
+        <button class="tab-btn" data-tab="evaluaciones">Evaluaciones</button>
+        <button class="tab-btn" data-tab="config">Configuración</button>
+      </div>
+
+      <div id="teacherPanelContent"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="app-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="brand-logo" style="margin-bottom:10px">UC</div>
+      <p>Unidad Central del Valle del Cauca<br>Programa de Enfermería</p>
+    </div>
+    <div>
+      <h4>Módulo</h4>
+      <p>Cuidado de Enfermería del Adulto en Situaciones de Alta Complejidad<br>Módulo I · Heridas y Ostomías</p>
+    </div>
+    <div>
+      <h4>Docente</h4>
+      <p>Yaneth Gómez López<br>yaneth.gomez@uceva.edu.co</p>
+    </div>
+    <div>
+      <h4>Enlaces</h4>
+      <p><a href="#/faq">Preguntas frecuentes</a><br><a href="#/contacto">Contacto</a><br><a href="#/docente">Panel docente</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">© <span id="year"></span> UCEVA — Derechos reservados. Plataforma educativa del módulo Heridas y Ostomías.</div>
+</footer>
+
+<!-- ============================= BOTTOM NAV (móvil) ============================= -->
+<nav class="bottom-nav">
+  <div class="bn-row">
+    <button class="bn-item" data-route="inicio"><svg width="20" height="20"><use href="#i-home"/></svg>Inicio</button>
+    <button class="bn-item" data-route="recursos"><svg width="20" height="20"><use href="#i-book"/></svg>Recursos</button>
+    <button class="bn-item" data-route="clases"><svg width="20" height="20"><use href="#i-play"/></svg>Clases</button>
+    <button class="bn-item" data-route="calendario"><svg width="20" height="20"><use href="#i-calendar"/></svg>Calendario</button>
+    <button class="bn-item" data-route="perfil"><svg width="20" height="20"><use href="#i-user"/></svg>Perfil</button>
+  </div>
+</nav>
+
+<!-- ============================= FAB Asistente IA ============================= -->
+<button class="fab" id="aiFab" title="Asistente IA (próximamente)"><svg width="24" height="24"><use href="#i-ai"/></svg></button>
+<button class="fab contact" id="chatFab" title="Contactar docente"><svg width="22" height="22"><use href="#i-mail"/></svg></button>
+
+<!-- ============================= MODAL: LOGIN ============================= -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <div class="modal-head"><h3>Ingresar al campus</h3><button class="modal-close" data-close-modal="loginModal"><svg width="18" height="18"><use href="#i-close"/></svg></button></div>
+    <div class="modal-body">
+      <div class="role-grid">
+        <button class="role-card" id="loginStudent">
+          <div class="role-icon">🎓</div>
+          <strong>Estudiante</strong>
+          <span>Accede a clases, recursos y actividades</span>
+        </button>
+        <button class="role-card" id="loginTeacherOpen">
+          <div class="role-icon">🛡️</div>
+          <strong>Docente</strong>
+          <span>Administra el contenido del módulo</span>
+        </button>
+      </div>
+      <div id="teacherLoginForm" style="display:none;margin-top:18px">
+        <hr class="sep">
+        <div class="form-group"><label>Contraseña docente</label><input type="password" id="teacherPassInput" placeholder="••••••••"></div>
+        <button class="btn btn-primary btn-block" id="teacherPassSubmit"><svg width="16" height="16" style="vertical-align:-3px"><use href="#i-lock"/></svg> Entrar como docente</button>
+        <p class="form-hint">Contraseña por defecto: <code>uceva2025</code> (se puede cambiar en Panel Docente → Configuración).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MODAL: GENÉRICO (formularios docente) ============================= -->
+<div class="modal-overlay" id="crudModal">
+  <div class="modal wide">
+    <div class="modal-head"><h3 id="crudModalTitle">Nuevo</h3><button class="modal-close" data-close-modal="crudModal"><svg width="18" height="18"><use href="#i-close"/></svg></button></div>
+    <div class="modal-body" id="crudModalBody"></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" data-close-modal="crudModal">Cancelar</button>
+      <button class="btn btn-primary" id="crudModalSave">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= MODAL: VISOR (video/pdf) ============================= -->
+<div class="modal-overlay" id="viewerModal">
+  <div class="modal wide">
+    <div class="modal-head"><h3 id="viewerTitle">Visor</h3><button class="modal-close" data-close-modal="viewerModal"><svg width="18" height="18"><use href="#i-close"/></svg></button></div>
+    <div class="modal-body" id="viewerBody"></div>
+  </div>
+</div>
+
+<!-- ============================= UPDATE BANNER ============================= -->
+<div class="update-banner" id="updateBanner">
+  <span>🔄 Hay una actualización disponible.</span>
+  <button class="btn btn-primary btn-sm" id="updateNowBtn">Actualizar ahora</button>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/teacher.js"></script>
+</body>
+</html>
