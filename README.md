@@ -43,10 +43,11 @@ en la Biblioteca (Infección, Insuficiencia venosa, Biofilm, Apósitos, etc.).
 No requiere instalación de dependencias (HTML + CSS + JS puro, sin frameworks pesados).
 
 ### Opción A — Abrir directamente
-Descomprime la carpeta y abre `index.html` con doble clic. La app funciona, aunque
-para que el *Service Worker* (modo offline) y el manifiesto PWA se activen
-correctamente, los navegadores exigen servirlo desde un servidor local o remoto
-(no `file://`).
+Descomprime la carpeta y abre `index.html` con doble clic. La app funciona,
+aunque abierta así (`file://`) el navegador no puede leer `data/content.json`
+por seguridad, así que verás siempre el contenido de ejemplo de fábrica en
+vez del publicado, y tampoco se activan el *Service Worker* ni el manifiesto
+PWA. Para probar todo tal cual lo verán los estudiantes, usa la Opción B o C.
 
 ### Opción B — Servidor local (recomendado)
 ```bash
@@ -94,43 +95,66 @@ heridas-ostomias/
 ├── index.html              # SPA — todas las vistas (estudiante + docente)
 ├── manifest.json           # Manifiesto PWA (nombre, iconos, shortcuts, colores)
 ├── service-worker.js       # Caché offline (app shell + recursos)
+├── data/
+│   └── content.json        # 📌 Contenido PUBLICADO que ven todos los estudiantes
+│                            #    (se reemplaza al usar "Publicar" en Panel Docente)
 ├── css/
 │   ├── style.css           # Sistema de diseño institucional UCEVA
 │   └── responsive.css      # Breakpoints móvil / tablet + accesibilidad
 ├── js/
-│   ├── data.js             # Capa de datos: colecciones JSON + localStorage
+│   ├── data.js             # Capa de datos: colecciones JSON + publicación
 │   ├── app.js               # Router (SPA), vistas del estudiante, PWA
 │   └── teacher.js          # Autenticación y panel CRUD del docente
 └── assets/icons/           # Iconos PWA (SVG, editable/reemplazable por PNG)
 ```
 
-## 🧠 Cómo se guarda la información
+## 🧠 Cómo se guarda la información — MUY IMPORTANTE
 
 Toda la información editable (sesiones, recursos, anuncios, casos clínicos,
-actividades, evaluaciones, perfil y progreso del estudiante) se guarda como
-**colecciones JSON** en `localStorage`, exactamente con la forma que tendría un
-archivo `db.json`:
+actividades y evaluaciones) se guarda como **colecciones JSON**, con la misma
+forma que tendría un archivo `db.json`. Como esta es una app estática (sin
+servidor propio), esa información vive **primero solo en el navegador donde
+la docente la edita** — un estudiante en su propio celular no la ve
+automáticamente.
 
-```js
-// Ejemplo de un registro de la colección "uceva_sessions"
-{ "id": "ses_1", "numero": 1, "tema": "...", "fecha": "2025-08-04", ... }
-```
+### 📤 Por eso hay que "Publicar" los cambios
+Desde **Panel Docente → Configuración** hay un botón **"Descargar content.json
+para publicar"**. El flujo es:
 
-Esto significa que:
-- Los cambios del docente son **inmediatos y persistentes** en ese navegador/dispositivo.
-- **Cada navegador tiene su propia copia** (no hay sincronización entre dispositivos
-  todavía — ver "Próximos pasos").
-- Migrar a una base de datos real es sencillo: basta con reemplazar las funciones
-  `read()` / `write()` de `js/data.js` por llamadas a la API de Firebase/Supabase;
-  el resto de la aplicación no necesita cambios porque ya trabaja con colecciones
-  de objetos planos.
+1. La docente edita normalmente (anuncios, sesiones, recursos, actividades…).
+2. Cuando quiere que los estudiantes vean los cambios, entra a
+   **Panel Docente → Configuración** y hace clic en **"Descargar content.json
+   para publicar"** — esto descarga un archivo `content.json`.
+3. Sube ese archivo a la carpeta **`data/`** de su repositorio en GitHub
+   (reemplazando el que ya existe ahí), con el mismo método de arrastrar y
+   soltar que usó para subir el proyecto la primera vez.
+4. En 1–2 minutos, **todos los estudiantes, en cualquier dispositivo**, verán
+   el contenido actualizado la próxima vez que abran o recarguen la app — la
+   app revisa automáticamente `data/content.json` cada vez que se abre.
+
+El proyecto ya incluye un `data/content.json` inicial (con el mismo contenido
+de ejemplo precargado), así que funciona igual desde el primer despliegue,
+incluso antes de que la docente publique su primer cambio. Dentro del Panel
+Docente aparece un aviso recordando publicar mientras haya cambios sin subir.
+
+> 💡 Mientras la docente no publique, sus ediciones siguen intactas en su
+> propio navegador aunque recargue la página o cierre y abra de nuevo — solo
+> se sobrescriben si ella misma importa un `content.json` más nuevo (por
+> ejemplo al cambiar de computador, usando "Restaurar / cambiar de
+> computador" en la misma pantalla de Configuración).
 
 ### Adjuntar archivos
 Desde el Panel Docente, cada recurso/sesión/actividad permite **pegar un enlace**
 (YouTube, Google Drive, Meet, artículo web, PDF externo) **o subir un archivo**
-(PDF/imagen, hasta ~4.5 MB, límite práctico de `localStorage`). Para archivos más
+(PDF/imagen, hasta ~4.5 MB, límite práctico del navegador). Para archivos más
 pesados se recomienda subirlos a Google Drive y pegar el enlace — el visor los
 reconoce automáticamente y los incrusta en una vista previa.
+
+> ⚠️ Los archivos adjuntos (no los enlaces) sí quedan incluidos dentro del
+> propio `content.json` al publicar, así que también llegan a todos los
+> estudiantes — solo ten en cuenta que muchos archivos grandes pueden hacer
+> ese archivo pesado. Para materiales grandes, siempre es mejor usar un
+> enlace de Google Drive.
 
 ---
 
@@ -171,9 +195,9 @@ recursos, calendario, actividades, etc.), sin necesidad de tocar código.
 
 ## 🔭 Próximos pasos sugeridos
 
-- **Firebase/Supabase**: reemplazar `localStorage` por una base de datos en la
-  nube para sincronizar contenido entre todos los dispositivos y permitir varios
-  docentes/administradores.
+- **Firebase/Supabase**: reemplazar el archivo `data/content.json` por una
+  base de datos en la nube, para que publicar sea automático (sin descargar y
+  subir un archivo) y permitir varios docentes editando a la vez en tiempo real.
 - **Notificaciones push**: el manifiesto y el service worker ya están preparados
   para añadir `Push API` cuando se disponga de un backend.
 - **Asistente IA**: el botón flotante "Asistente IA" está reservado (muestra

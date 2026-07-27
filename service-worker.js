@@ -43,8 +43,18 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(req.url);
   const isAppShell = url.origin === self.location.origin;
+  const isPublishedContent = url.pathname.endsWith('/data/content.json');
 
-  if (isAppShell) {
+  if (isPublishedContent) {
+    // El contenido publicado por el docente siempre se busca en la red primero,
+    // para que las actualizaciones se vean sin esperar a que expire la caché.
+    event.respondWith(
+      fetch(req).then(resp => {
+        if (resp && resp.status === 200) caches.open(CACHE_VERSION).then(cache => cache.put(req, resp.clone()));
+        return resp;
+      }).catch(() => caches.match(req))
+    );
+  } else if (isAppShell) {
     // Cache-first + revalidación en segundo plano (app shell, cronograma, recursos abiertos)
     event.respondWith(
       caches.match(req).then(cached => {

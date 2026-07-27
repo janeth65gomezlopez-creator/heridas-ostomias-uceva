@@ -359,8 +359,10 @@ function renderClases() {
   const sessions = DB.Sessions.all().sort((a, b) => a.numero - b.numero);
   grid.innerHTML = '';
   sessions.forEach(s => {
+    const thumb = el('div', { class: 'resource-thumb' });
+    thumb.innerHTML = '<svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-play"></use></svg>';
     grid.appendChild(el('div', { class: 'card resource-card' }, [
-      el('div', { class: 'resource-thumb' }, [document.createTextNode('🎥')]),
+      thumb,
       el('div', {}, [
         el('span', { class: 'chip blue' }, ['Sesión ' + s.numero]),
         el('h3', { style: 'font-size:.96rem;margin-top:8px' }, [s.tema]),
@@ -622,15 +624,16 @@ $('#updateNowBtn').addEventListener('click', () => location.reload());
 
 /* --------------------------------------- Init ----------------------------------------- */
 
-function init() {
+async function init() {
   DB.seed();
   $('#year').textContent = new Date().getFullYear();
+  await Promise.race([DB.syncPublished(), new Promise(r => setTimeout(r, 3500))]);
   setUserUI();
   const startRoute = location.hash.replace('#/', '') || 'inicio';
   APP.route = ROUTES.includes(startRoute) ? startRoute : 'inicio';
   location.hash = '/' + APP.route;
   renderRoute();
-  setTimeout(() => $('#splash').classList.add('hidden'), 900);
-  if (APP.user.role === 'guest') setTimeout(() => openModal('loginModal'), 1100);
+  setTimeout(() => $('#splash').classList.add('hidden'), 400);
+  if (APP.user.role === 'guest') setTimeout(() => openModal('loginModal'), 700);
 }
 document.addEventListener('DOMContentLoaded', init);

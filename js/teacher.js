@@ -41,6 +41,17 @@ const TEACHER = (() => {
       b.classList.toggle('active', b.dataset.tab === activeTab);
       b.onclick = () => { activeTab = b.dataset.tab; renderPanel(); };
     });
+
+    const reminder = $('#publishReminder');
+    if (reminder) reminder.remove();
+    if (activeTab !== 'config') {
+      const banner = el('div', { id: 'publishReminder', class: 'install-banner show', style: 'margin-bottom:16px' }, [
+        el('p', {}, ['💾 Recuerda: tus cambios solo se ven en este navegador hasta que los publiques.']),
+        el('button', { class: 'btn btn-primary btn-sm', onclick: () => { activeTab = 'config'; renderPanel(); } }, ['Ir a publicar'])
+      ]);
+      $('#teacherTabs').insertAdjacentElement('afterend', banner);
+    }
+
     const panels = {
       anuncios: panelAnuncios, sesiones: panelSesiones, recursos: panelRecursos,
       casos: panelCasos, actividades: panelActividades, evaluaciones: panelEvaluaciones,
@@ -235,7 +246,60 @@ const TEACHER = (() => {
 
   function panelConfig() {
     const c = container();
-    c.appendChild(el('h3', { style: 'margin-bottom:14px' }, ['Configuración del panel docente']));
+
+    c.appendChild(el('h3', { style: 'margin-bottom:14px' }, ['📤 Publicar el módulo para los estudiantes']));
+    const pubCard = el('div', { class: 'card', style: 'max-width:640px;margin-bottom:22px' });
+    pubCard.appendChild(el('p', { style: 'font-size:.88rem;line-height:1.6' }, [
+      'Todo lo que agregas o editas aquí se guarda primero solo en ',
+      el('strong', {}, ['este navegador']),
+      '. Para que los estudiantes (en sus propios celulares o computadores) vean tus cambios, descarga el archivo de contenido y súbelo a tu repositorio de GitHub, igual que subiste las carpetas del proyecto.'
+    ]));
+    pubCard.appendChild(el('p', { class: 'muted', style: 'font-size:.8rem;margin-top:8px' }, ['Última versión aplicada en este navegador: ' + DB.getPublishedVersionLabel()]));
+    const pubBtn = el('button', { class: 'btn btn-primary', style: 'margin-top:14px', onclick: () => {
+      const data = DB.exportContent();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'content.json'; a.click();
+      URL.revokeObjectURL(url);
+      localStorage.setItem('uceva_published_version', String(data.version));
+      toast('Archivo content.json descargado. Súbelo a la carpeta data/ de tu repositorio.', 'success');
+    } }, ['⬇️ Descargar content.json para publicar']);
+    pubCard.appendChild(pubBtn);
+
+    pubCard.appendChild(el('div', { style: 'margin-top:16px;background:var(--gray-50);border-radius:10px;padding:14px;font-size:.82rem;line-height:1.7' }, [
+      el('strong', {}, ['Cómo subirlo a GitHub (una vez descargado):']),
+      el('ol', { style: 'margin:8px 0 0 18px' }, [
+        el('li', {}, ['Entra a tu repositorio en GitHub.']),
+        el('li', {}, ['Si es la primera vez: haz clic en "Add file" → "Upload files" y arrastra el archivo ', el('code', {}, ['content.json']), ' que se descargó. En el cuadro de texto del nombre de archivo, escribe ', el('code', {}, ['data/content.json']), ' antes de subirlo, para que quede dentro de una carpeta "data".']),
+        el('li', {}, ['Si ya existe ', el('code', {}, ['data/content.json']), ': entra a esa carpeta, abre el archivo, haz clic en el ícono de lápiz (editar), borra todo el contenido, pega el contenido del nuevo archivo (ábrelo con el Bloc de notas para copiarlo) y da clic en "Commit changes". También puedes simplemente subir el archivo nuevo arrastrándolo dentro de la carpeta "data" — GitHub te preguntará si deseas reemplazarlo.']),
+        el('li', {}, ['Espera 1-2 minutos y pide a los estudiantes recargar la página (Ctrl+Shift+R).'])
+      ])
+    ]));
+    c.appendChild(pubCard);
+
+    c.appendChild(el('h3', { style: 'margin-bottom:14px' }, ['📥 Restaurar / cambiar de computador']));
+    const importCard = el('div', { class: 'card', style: 'max-width:640px;margin-bottom:22px' });
+    importCard.appendChild(el('p', { style: 'font-size:.86rem' }, ['Si vas a editar desde otro computador, primero descarga aquí el último ', el('code', {}, ['content.json']), ' publicado y cárgalo para continuar editando desde donde quedaste.']));
+    const importInput = el('input', { type: 'file', accept: 'application/json', style: 'margin-top:10px' });
+    importInput.addEventListener('change', () => {
+      const file = importInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const json = JSON.parse(reader.result);
+          DB.importContent(json);
+          toast('Contenido restaurado en este navegador', 'success');
+          renderPanel();
+        } catch (e) { toast('El archivo no es un content.json válido', 'error'); }
+      };
+      reader.readAsText(file);
+    });
+    importCard.appendChild(importInput);
+    c.appendChild(importCard);
+
+    c.appendChild(el('h3', { style: 'margin-bottom:14px' }, ['🔑 Contraseña docente']));
     const card = el('div', { class: 'card', style: 'max-width:480px' });
     const form = el('div');
     form.appendChild(field('password', 'nueva', 'Nueva contraseña docente'));
@@ -251,7 +315,7 @@ const TEACHER = (() => {
     form.appendChild(btn);
     card.appendChild(form);
     card.appendChild(el('hr', { class: 'sep' }));
-    card.appendChild(el('p', { class: 'muted', style: 'font-size:.82rem' }, ['Los datos del módulo se guardan localmente en este navegador (formato JSON), listos para migrar a Firebase o Supabase en una futura versión.']));
+    card.appendChild(el('p', { class: 'muted', style: 'font-size:.82rem' }, ['Los datos del módulo se guardan localmente en este navegador (formato JSON) y se publican mediante el archivo content.json descrito arriba — listos para migrar a Firebase o Supabase en una futura versión, si se requiere edición simultánea de varios docentes.']));
     const dangerBtn = el('button', { class: 'btn btn-danger btn-sm', style: 'margin-top:14px', onclick: () => {
       if (confirm('¿Restablecer todo el contenido del módulo a los valores iniciales? Esta acción no se puede deshacer.')) {
         DB.resetAll(); DB.seed(); toast('Contenido restablecido', 'success'); renderPanel(); renderInicio();

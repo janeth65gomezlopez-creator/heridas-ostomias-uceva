@@ -88,6 +88,57 @@ const DB = (() => {
   const Evaluations = collection(KEYS.evaluations);
   const Events = collection(KEYS.events);
 
+  /* ---------------------- Publicar / sincronizar contenido ---------------------- */
+  // El Panel Docente edita datos en localStorage (solo en su navegador). Para que
+  // TODOS los estudiantes, en cualquier dispositivo, vean el mismo contenido, la
+  // docente "publica" un archivo data/content.json que se sube al repositorio de
+  // GitHub. En cada carga, la app intenta leer ese archivo; si existe y trae una
+  // versión más nueva que la que ya se aplicó en este navegador, reemplaza las
+  // colecciones compartidas con lo publicado.
+
+  const PUBLISHED_VERSION_KEY = 'uceva_published_version';
+  const SHARED_COLLECTIONS = {
+    sessions: Sessions, resources: Resources, announcements: Announcements,
+    cases: Cases, activities: Activities, evaluations: Evaluations, events: Events
+  };
+
+  function exportContent() {
+    const data = { version: Date.now() };
+    Object.entries(SHARED_COLLECTIONS).forEach(([key, coll]) => { data[key] = coll.all(); });
+    return data;
+  }
+
+  function importContent(json, opts) {
+    if (!json || typeof json !== 'object') return false;
+    Object.entries(SHARED_COLLECTIONS).forEach(([key, coll]) => {
+      if (Array.isArray(json[key])) coll.replaceAll(json[key]);
+    });
+    if (json.version) localStorage.setItem(PUBLISHED_VERSION_KEY, String(json.version));
+    if (!opts || !opts.silent) localStorage.setItem(KEYS.seeded, '1');
+    return true;
+  }
+
+  async function syncPublished() {
+    try {
+      const res = await fetch('data/content.json', { cache: 'no-store' });
+      if (!res.ok) return false;
+      const json = await res.json();
+      const localVersion = localStorage.getItem(PUBLISHED_VERSION_KEY);
+      if (String(json.version) !== String(localVersion)) {
+        importContent(json);
+        return true;
+      }
+      return false;
+    } catch (e) {
+      return false; // sin conexión, archivo aún no existe, o sitio abierto con doble clic (file://)
+    }
+  }
+
+  function getPublishedVersionLabel() {
+    const v = localStorage.getItem(PUBLISHED_VERSION_KEY);
+    return v ? new Date(Number(v)).toLocaleString('es-CO') : 'Nunca publicado desde este navegador';
+  }
+
   /* ------------------------------ Perfil -------------------------------- */
 
   function getProfile() {
@@ -271,6 +322,7 @@ const DB = (() => {
     getProfile, saveProfile,
     getProgress, saveProgress, markSeen, toggleFavorite,
     seed,
-    resetAll: () => { Object.values(KEYS).forEach(k => localStorage.removeItem(k)); }
+    exportContent, importContent, syncPublished, getPublishedVersionLabel,
+    resetAll: () => { Object.values(KEYS).forEach(k => localStorage.removeItem(k)); localStorage.removeItem(PUBLISHED_VERSION_KEY); }
   };
 })();
