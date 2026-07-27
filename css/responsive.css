@@ -1,0 +1,62 @@
+/* =========================================================================
+   responsive.css — adaptaciones tablet / móvil
+   ========================================================================= */
+
+@media (max-width: 1080px) {
+  .main-content { padding: 22px 18px 100px; }
+  .header-search { max-width: 260px; }
+}
+
+@media (max-width: 900px) {
+  .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .sidebar {
+    position: fixed; left: 0; top: var(--header-h); height: calc(100vh - var(--header-h));
+    transform: translateX(-100%); transition: transform .3s ease; z-index: 700; box-shadow: var(--shadow-lg);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay {
+    display: none; position: fixed; inset: var(--header-h) 0 0 0; background: rgba(0,0,0,.35); z-index: 650;
+  }
+  .sidebar-overlay.show { display: block; }
+  .header-search { display: none; }
+  .user-chip span { display: none; }
+}
+
+@media (max-width: 680px) {
+  .app-header { padding: 0 12px; }
+  .brand-text span { display: none; }
+  .main-content { padding: 16px 14px 110px; }
+  .hero { padding: 22px; min-height: 240px; }
+  .hero h1 { font-size: 1.4rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .role-grid { grid-template-columns: 1fr; }
+  .bottom-nav { display: block; }
+  .fab { right: 16px; bottom: 78px; width: 50px; height: 50px; font-size: 20px; }
+  .fab.contact { bottom: 140px; }
+  .admin-toolbar { flex-direction: column; align-items: stretch; }
+  .card-grid { grid-template-columns: 1fr; }
+  .session-detail-grid { grid-template-columns: 1fr; }
+  .calendar-grid .dow:nth-child(n) { font-size: .6rem; }
+  .cal-cell { min-height: 56px; font-size: .64rem; }
+  .app-footer { padding: 30px 18px 120px; }
+}
+
+@media (max-width: 420px) {
+  .view-header { flex-direction: column; align-items: flex-start; }
+  .stat-card { flex-direction: row; }
+}
+
+/* Modo alto contraste (accesibilidad) */
+body.high-contrast {
+  --gray-50: #ffffff; --gray-100: #e8e8e8; --gray-200: #bfbfbf; --gray-600: #1a1a1a;
+  --uceva-green: #05663b; --uceva-green-light: #d3f2e1; --ink: #000000;
+}
+body.high-contrast .card, body.high-contrast .sidebar, body.high-contrast .app-header { border-width: 2px; }
+
+/* Texto escalable */
+body.text-lg { font-size: 108%; }
+body.text-xl { font-size: 118%; }
+
+@media print {
+  .sidebar, .app-header, .bottom-nav, .fab, .app-footer, .modal-overlay { display: none !important; }
+}
